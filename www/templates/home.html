@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Vertrev</title>
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Vertrev</h2>
+            <img src="/static/icons/vertrev-logo.jpeg" alt="Profile Icon" class="logo-icon">
+        </div>
+
+        <div class="sidebar-section">
+            <p class="section-title">Discover</p>
+            <a href="/" class="sidebar-link">
+                <img src="/static/icons/home.svg" alt="Home Icon" class="sidebar-icon">
+                Home
+            </a>
+            <a href="/config" class="sidebar-link">
+                <img src="/static/icons/settings.svg" alt="Settings Icon" class="sidebar-icon">
+                Configuracion
+            </a>
+            <a href="/wifi" class="sidebar-link">
+                <img src="/static/icons/wifi.svg" alt="Wifi Icon" class="sidebar-icon">
+                Red wifi
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <p class="section-title">Libreria</p>
+            <a href="/commands" class="sidebar-link">
+                <img src="/static/icons/list.svg" alt="List Icon" class="sidebar-icon">
+                Comandos
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            🌐 <span class="lang-switch">EN / ES</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+<h1>Redes</h1>
+<div class="estado-wrapper">
+  <div class="card">
+    <h4>Estado</h4>
+    <table>
+      <thead>
+        <tr><th>BSSID</th><th>IP</th><th>RSSI</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>xxxxxx</td><td>xxx</td><td>-48</td></tr>
+        <tr><td>xxxxxx</td><td>xxx</td><td>-48</td></tr>
+        <tr><td>xxxxxx</td><td>xxx</td><td>-48</td></tr>
+        <tr><td>xxxxxx</td><td>xxx</td><td>-48</td></tr>
+      </tbody>
+    </table>
+    <button class="btn-reload">Recargar</button>
+  </div>
+</div>
+    </div>
+</body>
+</html>

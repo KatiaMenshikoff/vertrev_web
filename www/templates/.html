@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Home - Vertrev{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="section">
+        <h2>Actualizar Firmware</h2>
+        <p>Si desea renovar el firmware</p>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="firmware">
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Configuracion</h2>
+        <p>Configure los valores</p>
+        <form method="POST">
+            <input type="hidden" name="config" value="1">
+            <div class="input-group">
+                <input type="number" name="rssi" placeholder="RSSI">
+                <input type="number" name="mcs" placeholder="MCS">
+                <input type="number" name="power" placeholder="Power">
+                <input type="number" name="snr" placeholder="SNR">
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Control dispositivo</h2>
+        <p>Opciones</p>
+        <form method="POST">
+            <div class="button-group">
+                <button type="submit" name="action" value="reboot" class="reboot">Reboot</button>
+                <button type="submit" name="action" value="default">Default</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comandos AT - Vertrev</title>
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+        <h2>Vertrev</h2>
+        <img src="/static/icons/vertrev-logo.jpeg" alt="Profile Icon" class="logo-icon">
+    </div>
+
+    <div class="sidebar-section">
+        <p class="section-title">Discover</p>
+        <a href="/" class="sidebar-link">
+            <img src="/static/icons/home.svg" alt="Home Icon" class="sidebar-icon">
+            Home
+        </a>
+        <a href="/config" class="sidebar-link">
+            <img src="/static/icons/settings.svg" alt="Settings Icon" class="sidebar-icon">
+            Configuracion
+        </a>
+        <a href="/wifi" class="sidebar-link">
+            <img src="/static/icons/wifi.svg" alt="Wifi Icon" class="sidebar-icon">
+            Red wifi
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <p class="section-title">Libreria</p>
+        <a href="/commands" class="sidebar-link">
+            <img src="/static/icons/list.svg" alt="List Icon" class="sidebar-icon">
+            Comandos
+        </a>
+    </div>
+    
+    <div class="sidebar-footer">
+        🌐 <span class="lang-switch">EN / ES</span>
+    </div>
+</div>
+
+  <div class="main-content">
+    
+<div class="comandos-container">
+  <h2>Comandos AT</h2>
+
+  <div class="comandos-header">
+  <input type="text" placeholder="🔍 Buscar comandos..." class="comando-busqueda">
+  <button class="btn btn-filtro">Filter</button>
+  </div>
+
+  <div class="comandos-lista">
+  <table>
+    <thead>
+    <tr>
+      <th>Comando</th>
+      <th>Descripcion</th>
+      <th>Parametros</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-script="test"><td>+TEST</td><td>Testeo</td><td><input type="text" placeholder="x"></td><td><button class="btn">Ejecutar</button></td></tr>
+    <tr><td>+DS</td><td>Aca iria una descripcion del comando</td><td><input type="text" placeholder="x"></td><td><button class="btn">Ejecutar</button></td></tr>
+    <tr><td>+DS</td><td>Aca iria una descripcion del comando</td><td><input type="text" placeholder="x"></td><td><button class="btn">Ejecutar</button></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <label class="logs-label">Logs</label>
+  <textarea class="logs-area" placeholder="Value"></textarea>
+
+  <div class="save-log">
+  <p>¿Desea guardar el resultado?</p>
+  <button class="btn">Guardar</button>
+  </div>
+</div>
+  </div>
+</body>
+</html>
+
+<script>
+  document.querySelectorAll(".btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const row = button.closest("tr");
+      const input = row.querySelector("input");
+      const param = input.value || input.placeholder;
+      const script = row.dataset.script;
+
+      fetch(`/run-command?cmd=${encodeURIComponent(script)}&arg=${encodeURIComponent(param)}`)
+        .then(r => r.text())
+        .then(text => {
+          document.querySelector(".logs-area").value = text;
+        });
+    });
+  });
+  document.querySelector(".save-log .btn").addEventListener("click", () => {
+    const logText = document.querySelector(".logs-area").value;
+
+    fetch("/save-log", {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: logText
+    }).then(res => {
+      if (res.ok) {
+        alert("Log guardado correctamente.");
+      } else {
+        alert("Error al guardar el log.");
+      }
+    });
+  });
+</script>
+
